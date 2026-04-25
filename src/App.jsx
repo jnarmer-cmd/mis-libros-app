@@ -1,7 +1,15 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+const Card = ({ children, className }) => <div className={`rounded-xl border shadow-sm ${className}`}>{children}</div>;
+const CardContent = ({ children, className }) => <div className={`p-6 ${className}`}>{children}</div>;
+const Button = ({ children, className, variant, size, ...props }) => {
+  const variants = {
+    outline: "border border-gray-300 bg-transparent hover:bg-gray-100",
+    destructive: "bg-red-500 text-white hover:bg-red-600",
+    default: "bg-blue-600 text-white hover:bg-blue-700"
+  };
+  return <button className={`px-4 py-2 rounded-lg font-medium transition-colors ${variants[variant] || variants.default} ${className}`} {...props}>{children}</button>;
+};
+const Input = ({ className, ...props }) => <input className={`flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${className}`} {...props} />;
 import { motion } from "framer-motion";
 import {
   BookOpen,
